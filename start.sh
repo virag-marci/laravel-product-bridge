@@ -3,11 +3,11 @@
 # Copy the .env.example file to .env
 cp .env.example .env
 
+# Install Composer dependencies
+composer install --no-interaction
+
 # Start the Sail containers with 'sail up'
 ./vendor/bin/sail up -d
-
-# Install Composer dependencies
-./vendor/bin/sail composer install --no-interaction
 
 # Generate the application key
 ./vendor/bin/sail artisan key:generate
