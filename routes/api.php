@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Product\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,17 @@ Route::middleware('auth:sanctum')->group(static function () {
     Route::get('user', static function (Request $request) {
         return $request->user();
     })->name('user');
+
+    Route::prefix('products')->name('products.')->group(static function () {
+
+        Route::prefix('product')->name('product.')->group(static function () {
+
+            Route::put('{product}',
+                [ProductController::class, 'update']
+            )->name('update');
+
+        });
+
+    });
 
 });
