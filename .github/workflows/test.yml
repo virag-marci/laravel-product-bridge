@@ -6,10 +6,26 @@ on:
       - develop
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0' # Set the PHP version based on your project requirements
+      - name: Run Start Script
+        run: |
+          chmod +x ./start.sh
+          ./start.sh
+
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    needs: test # Ensure tests run before SonarCloud analysis
     steps:
       - uses: actions/checkout@v3
         with:
