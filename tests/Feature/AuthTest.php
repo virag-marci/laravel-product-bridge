@@ -10,33 +10,61 @@ class AuthTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function a_user_can_login()
+    /**
+     * Data provider for valid login credentials.
+     */
+    public static function validCredentialsDataProvider(): array
     {
-        $user = User::factory()->create();
+        return [
+            'valid credentials' => ['password'],
+            'valid credentials 2' => ['password-2'],
+            'valid credentials 3' => ['password-3'],
+        ];
+    }
+
+    /**
+     * Data provider for invalid login credentials.
+     */
+    public static function invalidCredentialsDataProvider(): array
+    {
+        return [
+            'invalid password' => ['not-the-password'],
+            'invalid password 2' => ['not-the-password-2'],
+        ];
+    }
+
+    /**
+     * @dataProvider validCredentialsDataProvider
+     */
+    public function test_a_user_can_login($password)
+    {
+        $user = User::factory()->create([
+            'password' => bcrypt($password)
+        ]);
 
         $response = $this->postJson(route('auth.login'), [
             'email' => $user->email,
-            'password' => 'password',
+            'password' => $password,
         ]);
 
         $response->assertStatus(200)
             ->assertJsonStructure(['access_token']);
     }
 
-    /** @test */
-    public function a_user_can_not_login_with_invalid_credentials()
+    /**
+     * @dataProvider invalidCredentialsDataProvider
+     */
+    public function test_a_user_can_not_login_with_invalid_credentials($password)
     {
         $user = User::factory()->create();
 
         $this->postJson(route('auth.login'), [
             'email' => $user->email,
-            'password' => 'not-the-password',
+            'password' => $password,
         ])->assertStatus(401);
     }
 
-    /** @test */
-    public function a_user_can_access_their_profile()
+    public function test_a_user_can_access_their_profile()
     {
         $user = User::factory()->create();
 
