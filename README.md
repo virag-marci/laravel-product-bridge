@@ -51,11 +51,11 @@ composer install --no-interaction
 - **POST api/auth/login** - Parameters: email, password.
 Product Management:
 
-- **PUT api/products/product/{product}** - Parameters: title, description, image, price.
-
 ## User Profile:
-
 - **GET|HEAD api/user** - Requires an Authorization header with a bearer token obtained from the login endpoint.
+
+## Products:
+- **PUT api/products/product/{product}** - Parameters: title, description, image, price.
 
 # Artisan Commands
 php artisan import-products:fake-store: Imports products from the fake store API.
