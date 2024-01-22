@@ -2,6 +2,7 @@
 
 # Copy the .env.example file to .env
 cp .env.example .env
+cp .env.testing.example .env.testing
 
 # Install Composer dependencies
 composer install --no-interaction

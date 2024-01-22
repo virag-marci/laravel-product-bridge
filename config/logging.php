@@ -126,6 +126,11 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+
+        'test_log' => [
+            'driver' => 'monolog',
+            'handler' => \Monolog\Handler\TestHandler::class,
+        ],
     ],
 
 ];
