@@ -13,17 +13,26 @@ class AuthTest extends TestCase
     /** @test */
     public function a_user_can_login()
     {
-        $user = User::factory()->create([
-            'password' => bcrypt($password = 'i-love-laravel'),
-        ]);
+        $user = User::factory()->create();
 
         $response = $this->postJson(route('auth.login'), [
             'email' => $user->email,
-            'password' => $password,
+            'password' => 'password',
         ]);
 
         $response->assertStatus(200)
             ->assertJsonStructure(['access_token']);
+    }
+
+    /** @test */
+    public function a_user_can_not_login_with_invalid_credentials()
+    {
+        $user = User::factory()->create();
+
+        $this->postJson(route('auth.login'), [
+            'email' => $user->email,
+            'password' => 'not-the-password',
+        ])->assertStatus(401);
     }
 
     /** @test */
