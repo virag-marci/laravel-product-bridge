@@ -10,6 +10,10 @@ composer install --no-interaction
 # Start the Sail containers with 'sail up'
 ./vendor/bin/sail up -d
 
+# Echo a message indicating that we are waiting for the containers to start
+echo "Waiting for for the containers to start..."
+sleep 10
+
 # Generate the application key
 ./vendor/bin/sail artisan key:generate
 
@@ -21,4 +25,3 @@ composer install --no-interaction
 
 # Import products
 ./vendor/bin/sail artisan import-products:fake-store
-
