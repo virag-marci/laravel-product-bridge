@@ -18,3 +18,7 @@ composer install --no-interaction
 
 # Run tests
 ./vendor/bin/sail test --coverage-clover=coverage.xml
+
+# Import products
+./vendor/bin/sail artisan import-products:fake-store
+

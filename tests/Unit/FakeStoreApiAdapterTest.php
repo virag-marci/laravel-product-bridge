@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class FakeStoreApiAdapterTest extends TestCase
 {
-    public function testFetchProducts()
+    public function test_fetch_products()
     {
         Http::fake([
             'https://fakestoreapi.com/products' => Http::response([
@@ -25,7 +25,7 @@ class FakeStoreApiAdapterTest extends TestCase
         $this->assertEquals('Product 1', $products[0]['title']);
     }
 
-    public function testGetProducts()
+    public function test_get_products()
     {
         Http::fake([
             'https://fakestoreapi.com/products' => Http::response([

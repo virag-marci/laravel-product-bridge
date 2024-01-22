@@ -15,7 +15,7 @@ class ProductImporterTest extends TestCase
     /**
      * @throws Throwable
      */
-    public function testImportSuccessfully()
+    public function test_import_success()
     {
         $this->app['config']->set('logging.default', 'test_log');
         $logHandler = new \Monolog\Handler\TestHandler();
@@ -51,7 +51,7 @@ class ProductImporterTest extends TestCase
 
 
 
-    public function testImportThrowsException()
+    public function test_import_failure()
     {
         $mockAdapter = Mockery::mock(ProductImportAdapterContract::class);
         $mockAdapter->shouldReceive('getProducts')
