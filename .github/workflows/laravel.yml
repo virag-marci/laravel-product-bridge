@@ -36,5 +36,5 @@ jobs:
 
       - name: Run the Sail script
         run: |
-          chmod +x sail-up.sh
+          chmod +x start.sh
           ./start.sh
