@@ -20,23 +20,16 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, Product $product)
     {
-        try {
-            $product->fill($request->only([
-                'title',
-                'description',
-                'image',
-                'price',
-            ]));
-            $product->save();
+        $product->fill($request->only([
+            'title',
+            'description',
+            'image',
+            'price',
+        ]));
+        $product->save();
 
-            Log::info("Product updated successfully. Product ID: {$product->id}");
+        Log::info("Product updated successfully. Product ID: {$product->id}");
 
-            return response()->json(['message' => 'Product updated successfully'], 200);
-        } catch (\Exception $e) {
-
-            Log::error("Error updating product. Product ID: {$product->id}. Error message: {$e->getMessage()}");
-
-            return response()->json(['message' => 'An error occurred while updating the product'], 500);
-        }
+        return response()->json(['message' => 'Product updated successfully'], 200);
     }
 }
