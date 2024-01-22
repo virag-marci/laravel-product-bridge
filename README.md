@@ -47,9 +47,7 @@ composer install --no-interaction
 ```
 # API Endpoints
 ## Authentication:
-
 - **POST api/auth/login** - Parameters: email, password.
-Product Management:
 
 ## User Profile:
 - **GET|HEAD api/user** - Requires an Authorization header with a bearer token obtained from the login endpoint.
@@ -61,7 +59,7 @@ Product Management:
 php artisan import-products:fake-store: Imports products from the fake store API.
 
 # Contracts and Services
-## Contract:
+## Contracts:
 - **ProductImportAdapterContract:**
   - A contract for the product import adapter.
   
