@@ -70,7 +70,8 @@ php artisan import-products:fake-store: Imports products from the fake store API
   - A service that expects ProductImportAdapterContract and imports products from an API.
 
 # GitHub Actions:
-- **.github/workflows/sonarcloud.yml:**
+- **.github/workflows/test.yml:**
+  - Runs tests and generates a coverage report in XML format. 
   - Manages the coverage report to SonarCloud and performs SonarCloud analysis.
   Triggered on pushes to master and develop branches, as well as pull requests to these branches.
   Merging is prevented if the analysis fails.
